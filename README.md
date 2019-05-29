@@ -1,7 +1,6 @@
 # Pantomathēs
 
-Pantomathes is a movie recommender web app built with Ruby on Rails.
----
+Pantomathēs is a movie recommender web app built with Ruby on Rails.
 
 # Installation
 
