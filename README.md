@@ -20,3 +20,4 @@ rails server
 
 * Add user history
 * Add tests
+* Host on heroku
