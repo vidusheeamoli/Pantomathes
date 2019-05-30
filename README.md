@@ -15,3 +15,8 @@ rails server
 ```
 
 ---
+
+# To-do:
+
+* Add user history
+* Add tests
