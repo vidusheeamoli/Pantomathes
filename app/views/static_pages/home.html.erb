@@ -1,9 +1,41 @@
+<% provide(:title, "Home") %>
 <div class="center jumbotron">
-  <h1>Welcome to Pantomathes</h1>
+  <% if !logged_in? %>
+	  <h1>Welcome to Pantomathes</h1>
 
-  <h2>
-   Pantomathes is a movie recommender system.
-  </h2>
+	  <h2>
+	   Pantomathes is a movie recommender system built with Ruby on Rails!
+	  </h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+	  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <% else %>
+  		<h2><strong>Every detail you need, just one click away!</strong></h2>
+  		<br>
+  		<%= form_tag(search_path, method: :get) do %>
+					<%= text_field_tag(:search, params[:search], class: 'form-control') %>
+					<%= submit_tag("Search!", class: "btn btn-lg btn-primary") %>
+				<% end %>
+		<% if params.key?(:search) %>
+			<% information = search_api %>
+			<% if information["Response"] == "True" %>
+				<h1> <%= information["Title"] %> </h1>
+				<br>
+				<img src=<%= information["Poster"] %>>
+				<br>
+				<h2>Plot: <%= information["Plot"] %> </h2>
+				<h2>Released: <%= information["Released"] %> </h2>
+				<h2>Genre: <%= information["Genre"] %> </h2>
+				<h2>Director: <%= information["Director"] %> </h2>
+				<h2>Writer: <%= information["Writer"] %> </h2>
+				<h2>Actors: <%= information["Actors"] %> </h2>
+				<h2>Language: <%= information["Language"] %> </h2>
+				<h2>Country: <%= information["Country"] %> </h2>
+				<h2>Awards: <%= information["Awards"] %> </h2>
+			<%  else %>
+				<h2>Movie not found :( </h2>
+			<%  end %>
+		<% end %>
+
+
+  <% end %>
 </div>
